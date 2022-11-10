@@ -6,25 +6,36 @@
 /*   By: lvan-bus <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/25 09:45:33 by lvan-bus      #+#    #+#                 */
-/*   Updated: 2022/10/28 15:40:59 by lvan-bus      ########   odam.nl         */
+/*   Updated: 2022/11/10 09:30:15 by lvan-bus      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
 
+// INCLUDE
 # include <stddef.h>
+# include <stdlib.h>
+# include <fcntl.h>
+# include <unistd.h>
+//# include <sys/types.h>
+//# include <sys/uio.h>
+//# include <limits.h>
 
+// DEFINE
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 128
+# endif
+
+// GET_NEXT_LINE
 char	*get_next_line(int fd);
-char	*get_next_line_v2(int fd);
-char	*get_next_line_v3(int fd);
 
-/* UTILS */
+// UTILS
 void	*ft_memcpy(void *dst, const char *src, size_t n);
-char	*ft_strdup(const char *s1);
-char	*ft_substr(char const *s, unsigned int start, size_t len);
+char	*ft_strdup(char *s1);
+char	*ft_substr(char *s, unsigned int start, size_t len, int free_s);
 int		ft_strlen(const char *str);
-char	*ft_strjoin(char const *s1, char const *s2);
+char	*ft_strjoin(char *s1, char *s2);
 char	*ft_strchr(const char *s, int c);
 
 #endif

@@ -6,28 +6,13 @@
 /*   By: lvan-bus <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/25 09:39:03 by lvan-bus      #+#    #+#                 */
-/*   Updated: 2022/10/29 15:02:59 by lvan-bus      ########   odam.nl         */
+/*   Updated: 2022/11/10 09:36:34 by lvan-bus      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h>
-#include <stdlib.h>
-#include <stdio.h>
-#include <string.h>
-#include <limits.h>
 #include "get_next_line.h"
 
-int	ft_strlen(const char *str)
-{
-	int	index;
-
-	index = 0;
-	while (str[index])
-		index++;
-	return (index);
-}
-
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin(char *s1, char *s2)
 {
 	char	*temp;
 	size_t	size;
@@ -37,7 +22,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	size = ft_strlen(s1) + ft_strlen(s2);
 	temp = malloc((size + 1) * sizeof(char));
 	if (!temp)
-		return (NULL);
+		return (free(s1), NULL);
 	i = 0;
 	while (s1[i])
 	{
@@ -51,6 +36,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 		j++;
 	}
 	temp[i + j] = '\0';
+	free(s1);
 	return (temp);
 }
 
@@ -88,16 +74,18 @@ void	*ft_memcpy(void *dst, const char *src, size_t n)
 	return (dst);
 }
 
-char	*ft_strdup(const char *s1)
+char	*ft_strdup(char *s1)
 {
 	char	*dup;
 	char	*temp;
 	int		strsize;
 
+	if (!s1)
+		return (NULL);
 	strsize = ft_strlen(s1);
 	dup = malloc((strsize + 1) * sizeof(char));
 	if (!dup)
-		return (0);
+		return (NULL);
 	temp = dup;
 	while (*s1)
 	{
@@ -109,18 +97,21 @@ char	*ft_strdup(const char *s1)
 	return (dup);
 }
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+char	*ft_substr(char *s, unsigned int start, size_t len, int free_s)
 {
 	char	*p;
 	size_t	len_str;
 	size_t	var;
 
 	if (!s)
-		return (NULL);
+		return (free(s), NULL);
 	len_str = ft_strlen(s);
 	var = len_str - start;
 	if ((size_t) start >= len_str)
+	{
+		free(s);
 		return (ft_strdup(""));
+	}
 	if (len > var)
 		len = var;
 	p = malloc((len + 1) * sizeof(char));
@@ -128,5 +119,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 		return (NULL);
 	ft_memcpy(p, &(s[start]), len);
 	p[len] = '\0';
+	if (free_s)
+		free(s);
 	return (p);
 }
