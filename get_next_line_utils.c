@@ -6,7 +6,7 @@
 /*   By: lvan-bus <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/25 09:39:03 by lvan-bus      #+#    #+#                 */
-/*   Updated: 2022/11/10 09:36:34 by lvan-bus      ########   odam.nl         */
+/*   Updated: 2022/11/11 10:12:45 by lvan-bus      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,7 @@ char	*ft_substr(char *s, unsigned int start, size_t len, int free_s)
 		len = var;
 	p = malloc((len + 1) * sizeof(char));
 	if (!p)
-		return (NULL);
+		return (free(s), NULL);
 	ft_memcpy(p, &(s[start]), len);
 	p[len] = '\0';
 	if (free_s)

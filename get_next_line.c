@@ -6,7 +6,7 @@
 /*   By: lvan-bus <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/26 14:47:43 by lvan-bus      #+#    #+#                 */
-/*   Updated: 2022/11/10 09:34:39 by lvan-bus      ########   odam.nl         */
+/*   Updated: 2022/11/11 11:42:17 by lvan-bus      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ char	*get_next_line(int fd)
 	return (line);
 }
 
-/*#include <stdio.h>
+#include <stdio.h>
 int	main(void)
 {
 	int		fd;
@@ -89,4 +89,4 @@ int	main(void)
 	}
 	close(fd);
 	return (0);
-}*/
+}

@@ -6,7 +6,7 @@
 /*   By: lvan-bus <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/25 09:45:33 by lvan-bus      #+#    #+#                 */
-/*   Updated: 2022/11/10 09:30:15 by lvan-bus      ########   odam.nl         */
+/*   Updated: 2022/11/11 11:42:40 by lvan-bus      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,10 @@
 //# include <limits.h>
 
 // DEFINE
+# if BUFFER_SIZE < 1 || BUFFER_SIZE >= 10000000
+#  undef BUFFER_SIZE
+# endif
+
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 128
 # endif
