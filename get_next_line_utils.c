@@ -1,25 +1,13 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        ::::::::            */
-/*   get_next_line_utils.c                              :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: lvan-bus <marvin@codam.nl>                   +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2022/10/25 09:39:03 by lvan-bus      #+#    #+#                 */
-/*   Updated: 2022/11/11 10:12:45 by lvan-bus      ########   odam.nl         */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "get_next_line.h"
 
-char	*ft_strjoin(char *s1, char *s2)
+char	*gnl_strjoin(char *s1, char *s2)
 {
 	char	*temp;
 	size_t	size;
 	int		i;
 	int		j;
 
-	size = ft_strlen(s1) + ft_strlen(s2);
+	size = gnl_strlen(s1) + gnl_strlen(s2);
 	temp = malloc((size + 1) * sizeof(char));
 	if (!temp)
 		return (free(s1), NULL);
@@ -40,7 +28,7 @@ char	*ft_strjoin(char *s1, char *s2)
 	return (temp);
 }
 
-char	*ft_strchr(const char *s, int c)
+char	*gnl_strchr(const char *s, int c)
 {
 	if (!s)
 		return (NULL);
@@ -55,7 +43,7 @@ char	*ft_strchr(const char *s, int c)
 	return (NULL);
 }
 
-void	*ft_memcpy(void *dst, const char *src, size_t n)
+void	*gnl_memcpy(void *dst, const char *src, size_t n)
 {
 	char	*dest;
 	char	*source;
@@ -74,7 +62,7 @@ void	*ft_memcpy(void *dst, const char *src, size_t n)
 	return (dst);
 }
 
-char	*ft_strdup(char *s1)
+char	*gnl_strdup(char *s1)
 {
 	char	*dup;
 	char	*temp;
@@ -82,7 +70,7 @@ char	*ft_strdup(char *s1)
 
 	if (!s1)
 		return (NULL);
-	strsize = ft_strlen(s1);
+	strsize = gnl_strlen(s1);
 	dup = malloc((strsize + 1) * sizeof(char));
 	if (!dup)
 		return (NULL);
@@ -97,7 +85,7 @@ char	*ft_strdup(char *s1)
 	return (dup);
 }
 
-char	*ft_substr(char *s, unsigned int start, size_t len, int free_s)
+char	*gnl_substr(char *s, unsigned int start, size_t len, int free_s)
 {
 	char	*p;
 	size_t	len_str;
@@ -105,19 +93,19 @@ char	*ft_substr(char *s, unsigned int start, size_t len, int free_s)
 
 	if (!s)
 		return (free(s), NULL);
-	len_str = ft_strlen(s);
+	len_str = gnl_strlen(s);
 	var = len_str - start;
 	if ((size_t) start >= len_str)
 	{
 		free(s);
-		return (ft_strdup(""));
+		return (gnl_strdup(""));
 	}
 	if (len > var)
 		len = var;
 	p = malloc((len + 1) * sizeof(char));
 	if (!p)
 		return (free(s), NULL);
-	ft_memcpy(p, &(s[start]), len);
+	gnl_memcpy(p, &(s[start]), len);
 	p[len] = '\0';
 	if (free_s)
 		free(s);
